@@ -21,5 +21,8 @@ void    bst_destroy_traversal(node_t *node);
 node_t *bst_create_node(binary_search_tree_t *tree, void *data);
 node_t *bst_insert(binary_search_tree_t *tree, void *data, int (*bst_cmp_fptr)(const void *a, const void *b));
 node_t *bst_insert_traversal(binary_search_tree_t *tree, node_t **node, void *data, int (*bst_cmp_fptr)(const void *a, const void *b));
+node_t *bst_inorder_successor(node_t *node);
+node_t *bst_delete(binary_search_tree_t *tree, void *data, int (*bst_cmp_fptr)(const void *a, const void *b));
+node_t *bst_delete_traversal(binary_search_tree_t *tree, node_t *node, void *data, int (*bst_cmp_fptr)(const void *a, const void *b));
 
 #endif // __BINARY_SEARCH_TREE_H__
