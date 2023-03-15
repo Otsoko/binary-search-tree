@@ -32,18 +32,18 @@ int main(int argc, char const *argv[]) {
 
     srand(time(NULL));
 
-    for(int i=0; i<5; i++){
-        data.number = (rand() % (MAX_RAND - MIN_RAND)) + MIN_RAND;
+    for (int i = 0; i < 5; i++) {
+        data.number    = (rand() % (MAX_RAND - MIN_RAND)) + MIN_RAND;
         data.character = (rand() % (MAX_ASCII - MIN_ASCII)) + MIN_ASCII;
         bst_insert(&bst, &data, comparator);
     }
 
-    data.number = 33;
+    data.number    = 33;
     data.character = 'X';
     bst_insert(&bst, &data, comparator);
 
-    for(int i=0; i<5; i++){
-        data.number = (rand() % (MAX_RAND - MIN_RAND)) + MIN_RAND;
+    for (int i = 0; i < 5; i++) {
+        data.number    = (rand() % (MAX_RAND - MIN_RAND)) + MIN_RAND;
         data.character = (rand() % (MAX_ASCII - MIN_ASCII)) + MIN_ASCII;
         bst_insert(&bst, &data, comparator);
     }
@@ -61,7 +61,7 @@ int main(int argc, char const *argv[]) {
     postorderTraversal(bst.root);
     printf("\n");
 
-    data.number = 33;
+    data.number    = 33;
     data.character = 'X';
     bst_delete(&bst, &data, comparator);
 
@@ -136,7 +136,7 @@ void bstPrint(node_t *root) {
     bstPrintTraversal(root, 0);
 }
 
-int comparator(const void *a, const void *b){
+int comparator(const void *a, const void *b) {
     const data_t *da = a;
     const data_t *db = b;
     return da->number - db->number;
