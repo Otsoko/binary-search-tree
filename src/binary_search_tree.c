@@ -1,8 +1,6 @@
 #include "binary_search_tree.h"
 #include <string.h>
 
-int (*bst_cmp_fptr)(const void *, const void *) = NULL;
-
 void bst_init(binary_search_tree_t *tree, size_t element_size) {
     tree->root         = NULL;
     tree->length       = 0;
@@ -47,20 +45,24 @@ node_t *bst_create_node(binary_search_tree_t *tree, void *data) {
     return new;
 }
 
-node_t *bst_insert(binary_search_tree_t *tree, void *data) {
-    return bst_insert_traversal(tree, tree->root, data);
+node_t *bst_insert(binary_search_tree_t *tree, void *data, int (*bst_cmp_fptr)(const void *a, const void *b)) {
+    return bst_insert_traversal(tree, &(tree->root), data, bst_cmp_fptr);
 }
 
-node_t *bst_insert_traversal(binary_search_tree_t *tree, node_t *node, void *data) {
-    if (node == NULL) {
-        return bst_create_node(tree, data);
+node_t *bst_insert_traversal(binary_search_tree_t *tree, node_t **node, void *data, int (*bst_cmp_fptr)(const void *a, const void *b)) {
+    if (*node == NULL) {
+        *node = bst_create_node(tree, data);
+        tree->length++;
+        return *node;
     }
 
-    if (bst_cmp_fptr(data, node->data) < 0) {
-        node->left = bst_insert_traversal(tree, node->left, data);
+    if (bst_cmp_fptr(data, (*node)->data) < 0) {
+        (*node)->left = bst_insert_traversal(tree, &(*node)->left, data, bst_cmp_fptr);
+    } else if(bst_cmp_fptr(data, (*node)->data) > 0){
+        (*node)->right = bst_insert_traversal(tree, &(*node)->right, data, bst_cmp_fptr);
     } else {
-        node->right = bst_insert_traversal(tree, node->right, data);
+        // Element already exists
     }
 
-    return node;
+    return *node;
 }
