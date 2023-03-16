@@ -32,7 +32,7 @@ int main(int argc, char const *argv[]) {
 
     srand(time(NULL));
 
-    for (int i = 0; i < 5; i++) {
+    for (int i = 0; i < 10; i++) {
         data.number    = (rand() % (MAX_RAND - MIN_RAND)) + MIN_RAND;
         data.character = (rand() % (MAX_ASCII - MIN_ASCII)) + MIN_ASCII;
         bst_insert(&bst, &data, comparator);
@@ -42,7 +42,7 @@ int main(int argc, char const *argv[]) {
     data.character = 'X';
     bst_insert(&bst, &data, comparator);
 
-    for (int i = 0; i < 5; i++) {
+    for (int i = 0; i < 10; i++) {
         data.number    = (rand() % (MAX_RAND - MIN_RAND)) + MIN_RAND;
         data.character = (rand() % (MAX_ASCII - MIN_ASCII)) + MIN_ASCII;
         bst_insert(&bst, &data, comparator);
@@ -65,7 +65,7 @@ int main(int argc, char const *argv[]) {
     data.character = 'X';
     bst_delete(&bst, &data, comparator);
 
-    printf("Length: %ld\n", bst.length);
+    printf("\nLength: %ld\n", bst.length);
     printf("Tree view\n");
     bstPrint(bst.root);
     printf("\n");

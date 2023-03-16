@@ -91,16 +91,18 @@ node_t *bst_delete_traversal(binary_search_tree_t *tree, node_t *node, void *dat
     } else if (bst_cmp_fptr(data, node->data) > 0) {
         node->right = bst_delete_traversal(tree, node->right, data, bst_cmp_fptr);
     } else {
-        tree->length--;
+
         if (node->left == NULL) {
             node_t *temp = node->right;
             free(node->data);
             free(node);
+            tree->length--;
             return temp;
         } else if (node->right == NULL) {
             node_t *temp = node->left;
             free(node->data);
             free(node);
+            tree->length--;
             return temp;
         }
 
