@@ -1,5 +1,5 @@
 binary-search-tree
-lib/
+build/
 .vscode/
 
 # Prerequisites
